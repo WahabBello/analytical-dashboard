@@ -1,0 +1,18 @@
+services:
+  front:
+    build: ./front
+    ports:
+      - "8080:80"
+    networks:
+      - app-network
+
+  back:
+    build: ./back
+    ports:
+      - "3000:3000"
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge
