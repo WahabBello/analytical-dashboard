@@ -1,25 +1,33 @@
-const users = []; // Base de données fictive
+const User = require('../models/userModel');
 
-// Récupérer tous les produits
-exports.getAllUsers = (req, res) => {
-  res.status(200).json({ users });
+// Récupérer tous les utilisateurs
+exports.getAllUsers = async (req, res) => {
+  try {
+    const users = await User.find();
+    res.status(200).json(users);
+  } catch (err) {
+    res.status(500).json({ message: 'Erreur lors de la récupération des utilisateurs', error: err });
+  }
+};
+
+// Ajouter un nouveau user
+exports.createUser = async (req, res) => {
+  try {
+    const { name, price } = req.body;
+    const newUser = new User({ name, firstname });
+    await newUser.save(); 
+    res.status(201).json({ message: 'Produit ajouté avec succès', product: newUser });
+  } catch (err) {
+    res.status(500).json({ message: 'Erreur lors de la création du user', error: err });
+  }
 };
 
 // Récupérer un produit par ID
 exports.getUserById = (req, res) => {
   const { id } = req.params;
-  const user = users.find(p => p.id === parseInt(id));
+  const user = User.find(p => p.id === parseInt(id));
   if (!user) {
     return res.status(404).json({ message: 'Produit non trouvé' });
   }
   res.status(200).json({ user });
 };
-
-// Créer un nouveau produit
-exports.createUser = (req, res) => {
-  const { name, price } = req.body;
-  const newSale = { id: users.length + 1, name, price };
-  users.push(newSale);
-  res.status(201).json({ message: 'Produit créé avec succès', user: newUser });
-};
-

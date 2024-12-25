@@ -7,7 +7,7 @@ const router = express.Router();
 router.get('/', getAllProducts);
 
 // Récupérer un produit par ID
-router.get('/:id', getProductById);
+// router.get('/:id', getProductById);
 
 // Créer un nouveau produit
 router.post('/', createProduct);

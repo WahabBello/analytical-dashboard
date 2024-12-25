@@ -34,7 +34,7 @@ const mongoose = require('mongoose');
 
 // console.log('Base de données connectée');
 
-mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true })
+mongoose.connect(process.env.MONGO_URI)
   .then(() => console.log('Base de données connectée'))
   .catch(err => console.log('Erreur de connexion :', err));
 
