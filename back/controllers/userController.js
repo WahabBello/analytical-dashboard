@@ -12,14 +12,14 @@ exports.getAllUsers = async (req, res) => {
 
 // Ajouter un nouveau user
 exports.createUser = async (req, res) => {
-  try {
-    const { name, price } = req.body;
-    const newUser = new User({ name, firstname });
-    await newUser.save(); 
-    res.status(201).json({ message: 'Produit ajouté avec succès', product: newUser });
-  } catch (err) {
-    res.status(500).json({ message: 'Erreur lors de la création du user', error: err });
-  }
+  // try {
+  //   const { name, firstname } = req.body;
+  //   const newUser = new User({ name, firstname });
+  //   await newUser.save(); 
+  //   res.status(201).json({ message: 'User crée avec succès', product: newUser });
+  // } catch (err) {
+  //   res.status(500).json({ message: 'Erreur lors de la création du user', error: err });
+  // }
 };
 
 // Récupérer un produit par ID

@@ -3,8 +3,8 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 require('dotenv').config();
-
 const app = express();
+const mongoose = require('mongoose');
 
 // Middlewares
 app.use(cors()); // Autoriser les requêtes Cross-Origin
@@ -29,8 +29,6 @@ app.use('/sales', salesRoutes);
 app.use('/users', userRoutes);
 
 // Connection bd 
-
-const mongoose = require('mongoose');
 
 // console.log('Base de données connectée');
 
