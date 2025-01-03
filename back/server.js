@@ -3,9 +3,8 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 require('dotenv').config();
-
-// Initialisation de l'application Express
 const app = express();
+const mongoose = require('mongoose');
 
 // Middlewares
 app.use(cors()); // Autoriser les requêtes Cross-Origin
@@ -19,6 +18,24 @@ const PORT = process.env.PORT || 3000;
 app.get('/', (req, res) => {
   res.send('Bienvenue sur l’API REST!');
 });
+
+const productRoutes = require('./routes/productRoutes');
+const salesRoutes = require('./routes/salesRoutes');
+const userRoutes = require('./routes/userRoutes');
+
+// Utilisation des routes
+app.use('/products', productRoutes);
+app.use('/sales', salesRoutes);
+app.use('/users', userRoutes);
+
+// Connection bd 
+
+// console.log('Base de données connectée');
+
+mongoose.connect(process.env.MONGO_URI)
+  .then(() => console.log('Base de données connectée'))
+  .catch(err => console.log('Erreur de connexion :', err));
+
 
 // Démarrage du serveur
 app.listen(PORT, () => {
