@@ -16,3 +16,10 @@ exports.verifyToken = (req, res, next) => {
     return res.status(401).json({ message: 'Token invalide ou expiré' });
   }
 };
+
+exports.verifyAdmin = (req, res, next) => {
+  if (req.user.role !== 'admin') {
+    return res.status(403).json({ message: 'Accès interdit : rôle admin requis' });
+  }
+  next();
+};
